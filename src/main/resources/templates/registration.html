@@ -29,6 +29,8 @@
 				th:if="${session.message}" th:classappend="${session.message.type}">
 				<p th:text="${session.message.content}"></p>
 				
+				<div th:text="${#session.removeAttribute('message')}"></div>
+				
 
 			</div>
 
@@ -36,7 +38,7 @@
 			<div class="image_registration_banner text-center">
 				<img style="width: 100px" th:src="@{/images/register.png}">
 			</div>
-			<form th:action="@{/do_register}" th:object="${user}" method="post">
+			<form novalidate th:action="@{/do_register}" th:object="${user}" method="post">
 				<div class="form-group">
 					<label for="user_name_form">User name</label> <input type="text"
 						class="form-control is-invalid" id="user_name_form"
@@ -45,8 +47,8 @@
 						name="user_name">
 						
 						
-						<div class="invalid-feedback" th:each="e:${#fields.errors('userName')}">
-						<p th:text="${e}"></p>
+						<div class="invalid-feedback" th:each="e:${#fields.errors('userName')}" th:text="${e}">
+						
 						</div>
 				</div>
 
